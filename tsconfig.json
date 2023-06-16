@@ -7,7 +7,7 @@
     "isolatedModules": true,
     "jsx": "react-native",
     "lib": ["es2017"],
-    "types": ["react-native", "jest", "styled-components-react-native"],
+    "types": ["react-native", "jest", "styled-components-react-native", "react-native-vector-icons"],
     "moduleResolution": "node",
     "noEmit": true,
     "strict": true,
