@@ -9,11 +9,12 @@ type ItemComponentProps = PropsWithChildren<{
   title: string;
   price: number;
   displayButtons: boolean;
+  onPress: () => void;
 }>;
 
 export const ItemComponent = (props: ItemComponentProps) => {
   return (
-    <S.Container>
+    <S.Container onPress={props.onPress}>
       <S.Image source={props.image} />
       <S.ContentCenterContainer>
         <S.Text>{props.title}</S.Text>
