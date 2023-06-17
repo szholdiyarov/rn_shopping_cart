@@ -1,26 +1,27 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { ItemComponent } from 'components/item';
 import FoundationIcons from 'react-native-vector-icons/Foundation';
 import { addToCart, removeOneItem } from 'state/cartSlice';
+import { RootState } from 'state/store';
 
 import { Props } from '../../App';
-import { ItemComponent } from '../../components/item';
-import { RootState } from '../../state/store';
 
 import * as S from './styles';
 
-export const DetailScreen = ({ route, navigation }: Props) => {
+export const DetailScreen = ({ route }: Props) => {
   const dispatch = useDispatch();
+  const { id } = route!.params!;
 
   const items = useSelector((state: RootState) => state.shopReducer.items);
-  const itemToDisplay = items.find(item => item.id === route!.params!.id);
+  const itemToDisplay = items.find(item => item.id === id);
   let quantity = 0;
 
   const cartItems = useSelector((state: RootState) => state.cartReducer.items);
   if (cartItems.length !== 0) {
     const indexOfItemInCart = cartItems.findIndex(
-      cartItem => cartItem.shopItem.id === route!.params!.id,
+      cartItem => cartItem.shopItem.id === id,
     );
     if (indexOfItemInCart > -1) {
       quantity = cartItems[indexOfItemInCart].quantity;
@@ -29,6 +30,7 @@ export const DetailScreen = ({ route, navigation }: Props) => {
   return (
     <S.Container>
       <ItemComponent
+        displayButtons={false}
         image={itemToDisplay!.image}
         title={itemToDisplay!.title}
         price={itemToDisplay!.price}

@@ -5,7 +5,7 @@ import FoundationIcons from 'react-native-vector-icons/Foundation';
 
 import * as S from './styles';
 type ItemComponentProps = PropsWithChildren<{
-  image: string;
+  image: number;
   title: string;
   price: number;
   displayButtons: boolean;

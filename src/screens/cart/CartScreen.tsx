@@ -3,9 +3,8 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { ItemComponent } from 'components/item';
+import { addToCart, removeOneItem } from 'state/cartSlice';
 import { RootState } from 'state/store';
-
-import { addToCart, removeOneItem } from '../../state/cartSlice';
 
 import * as S from './styles';
 
@@ -34,7 +33,7 @@ export const CartScreen = () => {
         keyExtractor={item => item.shopItem.id}
       />
       <S.BottomContainer>
-        <S.Text>Total: {total.toFixed(2)}</S.Text>
+        <S.Text>Total: ${total.toFixed(2)}</S.Text>
       </S.BottomContainer>
     </S.Container>
   );
