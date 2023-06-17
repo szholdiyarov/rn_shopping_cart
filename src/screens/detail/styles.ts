@@ -21,7 +21,7 @@ export const BottomContainer = styled.View`
   align-items: center;
   margin-left: 60px;
   margin-right: 60px;
-  margin-top: 140px;
+  margin-top: 80px;
   margin-bottom: 40px;
 `;
 

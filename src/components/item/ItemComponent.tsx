@@ -9,7 +9,10 @@ type ItemComponentProps = PropsWithChildren<{
   title: string;
   price: number;
   displayButtons: boolean;
-  onPress: () => void;
+  onPress?: () => void;
+  onAddPress?: () => void;
+  onRemovePress?: () => void;
+  quantity?: number;
 }>;
 
 export const ItemComponent = (props: ItemComponentProps) => {
@@ -22,13 +25,13 @@ export const ItemComponent = (props: ItemComponentProps) => {
       </S.ContentCenterContainer>
       {props.displayButtons && (
         <S.ContentRightContainer>
-          <S.Touchable>
+          <S.Touchable onPress={props.onAddPress}>
             <FoundationIcons name={'plus'} color={'black'} size={26} />
           </S.Touchable>
           <S.CounterContainer>
-            <S.Text>1</S.Text>
+            <S.Text>{props.quantity}</S.Text>
           </S.CounterContainer>
-          <S.Touchable>
+          <S.Touchable onPress={props.onRemovePress}>
             <FoundationIcons name={'minus'} color={'black'} size={26} />
           </S.Touchable>
         </S.ContentRightContainer>

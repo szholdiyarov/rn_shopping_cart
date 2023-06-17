@@ -18,7 +18,7 @@ export const HomeScreen = ({ navigation }: Props) => {
         data={data}
         renderItem={({ item }) => (
           <ItemComponent
-            onPress={() => navigation.navigate('Details')}
+            onPress={() => navigation.navigate('Details', { id: item.id })}
             displayButtons={false}
             image={item.image}
             title={item.title}

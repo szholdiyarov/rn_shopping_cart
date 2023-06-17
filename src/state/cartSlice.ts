@@ -22,16 +22,19 @@ export const cartSlicer = createSlice({
       const indexOfItem = items.findIndex(
         item => item.shopItem.id === action.payload.id,
       );
+      console.log(indexOfItem);
+      const itemToPush = action.payload;
 
       if (indexOfItem >= 0) {
         const shopItemToUpdate = items[indexOfItem];
         shopItemToUpdate.quantity += 1;
+        state.total += itemToPush.price;
       } else {
-        const itemToPush = action.payload;
         state.items.push({
           shopItem: itemToPush,
-          quantity: 0,
+          quantity: 1,
         });
+        state.total += itemToPush.price;
       }
     },
     removeOneItem: (state, action: PayloadAction<ShopItem>) => {
@@ -42,13 +45,17 @@ export const cartSlicer = createSlice({
 
       if (indexOfItem >= 0) {
         const shopItemToUpdate = items[indexOfItem];
+        state.total -= shopItemToUpdate.shopItem.price;
         shopItemToUpdate.quantity -= 1;
+        if (shopItemToUpdate.quantity === 0) {
+          state.items.splice(indexOfItem, 1);
+        }
       }
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { addToCart } = cartSlicer.actions;
+export const { addToCart, removeOneItem } = cartSlicer.actions;
 
 export default cartSlicer.reducer;
